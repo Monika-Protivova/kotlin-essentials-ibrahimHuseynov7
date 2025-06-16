@@ -3,40 +3,36 @@ package com.motycka.edu.lesson02
 val coffeeOrders = mutableMapOf<Int, List<String>>()
 
 fun main() {
-    // You can write code here to try the functions
     processOrder(listOf(ESPRESSO, CAPPUCCINO, CAPPUCCINO, AMERICANO), 20.0)
     processOrder(listOf(ESPRESSO, FLAT_WHITE, AMERICANO), 10.0)
-    // processOrder(listOf(ESPRESSO, ESPRESSO, DOUBLE_ESPRESSO), 5.0) // will fail due to insufficient payment
+    // processOrder(listOf(ESPRESSO, ESPRESSO, DOUBLE_ESPRESSO), 5.0) // will fail
 }
-
-/* Implement the functions below */
 
 fun processOrder(items: List<String>, payment: Double): Double {
     val orderId = placerOrder(items)
     val totalToPay = payOrder(orderId)
 
+    println("Processing payment for order #$orderId: total = $totalToPay, payment = $payment")
+
     if (payment < totalToPay) {
-        throw IllegalArgumentException("Payment of $payment is not enough. Total to pay is $totalToPay")
+        throw IllegalArgumentException("Payment of $$payment is not enough, total is $$totalToPay")
     }
 
-    println("Payment successful. You paid $$payment for order #$orderId")
-
     val change = payment - totalToPay
+    println("Payment successful. Change: $$change")
 
     completeOrder(orderId)
-
     return change
 }
 
 fun placerOrder(items: List<String>): Int {
-    val newOrderId = if (coffeeOrders.isEmpty()) 1 else coffeeOrders.keys.maxOrNull()!! + 1
-    coffeeOrders[newOrderId] = items
-    return newOrderId
+    val newId = (coffeeOrders.keys.maxOrNull() ?: 0) + 1
+    coffeeOrders[newId] = items
+    return newId
 }
 
 fun payOrder(orderId: Int): Double {
-    val items = coffeeOrders[orderId] ?: throw IllegalArgumentException("Order ID $orderId does not exist.")
-
+    val items = coffeeOrders[orderId] ?: throw IllegalArgumentException("Order #$orderId does not exist")
     val prices = items.map { getPrice(it) }
 
     val total = if (prices.size >= 3) {
@@ -50,7 +46,7 @@ fun payOrder(orderId: Int): Double {
 
 fun completeOrder(orderId: Int) {
     if (!coffeeOrders.containsKey(orderId)) {
-        throw IllegalArgumentException("Order ID $orderId does not exist.")
+        throw IllegalArgumentException("Order #$orderId does not exist")
     }
     coffeeOrders.remove(orderId)
 }
