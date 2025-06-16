@@ -44,7 +44,7 @@ val price = when (coffeeType) {
    - For each order:
      - Prints the order ID and items
      - Uses a `when` expression to determine the price of each coffee item
-     - Uses an `if-else` expression to apply a discount (the price of the cheapest coffee) if the order contains 3 or more items
+     - Uses an `if-else` expression to apply a discount (the price of the cheapest coffee) if the order contains 4 or more items
      - Calculates and prints the total price for the order
 
 Example output:
