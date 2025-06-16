@@ -1,4 +1,4 @@
-package com.motycka.edu.lesson04Add commentMore actions
+package com.motycka.edu.lesson04
 
 import io.github.oshai.kotlinlogging.KotlinLogging
 
