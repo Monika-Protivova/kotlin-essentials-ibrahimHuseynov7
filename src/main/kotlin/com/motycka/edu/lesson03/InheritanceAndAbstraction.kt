@@ -43,7 +43,6 @@ open class Rectangle(
 }
 
 class Square(side: Double) : Rectangle(side, side) {
-
     override fun to3D(depth: Double): Shape3D = super.to3D(depth)
 }
 
@@ -52,7 +51,6 @@ class Cuboid(
     private val length: Double,
     private val height: Double
 ) : Shape3D {
-
     override fun volume(): Double = width * length * height
 
     override fun surfaceArea(): Double =
@@ -60,7 +58,6 @@ class Cuboid(
 }
 
 class Circle(override val radius: Double) : Shape2D, Ellipse {
-
     override fun area(): Double = PI * radius * radius
 
     override fun perimeter(): Double = 2 * PI * radius
@@ -69,34 +66,7 @@ class Circle(override val radius: Double) : Shape2D, Ellipse {
 }
 
 class Sphere(private val radius: Double) : Shape3D {
-
     override fun volume(): Double = (4.0 / 3.0) * PI * radius.pow(3)
 
     override fun surfaceArea(): Double = 4 * PI * radius.pow(2)
-}
-
-fun main() {
-    val rectangle = Rectangle(2.0, 3.0)
-    println("Rectangle area: ${rectangle.area()}")
-    println("Rectangle perimeter: ${rectangle.perimeter()}")
-
-    val square = Square(5.0)
-    println("Square area: ${square.area()}")
-    println("Square perimeter: ${square.perimeter()}")
-
-    val cube = square.to3D(square.width)
-    println("Cube volume: ${cube.volume()}")
-    println("Cube surface area: ${cube.surfaceArea()}")
-
-    val cuboid = rectangle.to3D(4.0)
-    println("Cuboid volume: ${cuboid.volume()}")
-    println("Cuboid surface area: ${cuboid.surfaceArea()}")
-
-    val circle = Circle(4.0)
-    println("Circle area: ${circle.area()}")
-    println("Circle perimeter: ${circle.perimeter()}")
-
-    val sphere = circle.to3D()
-    println("Sphere volume: ${sphere.volume()}")
-    println("Sphere surface area: ${sphere.surfaceArea()}")
 }
