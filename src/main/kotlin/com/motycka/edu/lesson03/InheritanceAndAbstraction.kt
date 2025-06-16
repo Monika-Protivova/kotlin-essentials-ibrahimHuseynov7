@@ -25,30 +25,26 @@ interface Shape3D {
 }
 
 open class Rectangle(
-    protected val width: Double,
-    protected val length: Double
+    protected val _width: Double,
+    protected val _length: Double
 ) : Shape2D, Quadrilateral {
 
     override val width: Double
-        get() = this.width
+        get() = _width
 
     override val length: Double
-        get() = this.length
+        get() = _length
 
     override fun area(): Double = width * length
 
     override fun perimeter(): Double = 2 * (width + length)
 
-    override fun to3D(depth: Double): Shape3D {
-        return Cuboid(width, length, depth)
-    }
+    override fun to3D(depth: Double): Shape3D = Cuboid(width, length, depth)
 }
 
 class Square(side: Double) : Rectangle(side, side) {
 
-    fun to3D(depth: Double = width): Shape3D {
-        return super.to3D(depth)
-    }
+    override fun to3D(depth: Double): Shape3D = super.to3D(depth)
 }
 
 class Cuboid(
