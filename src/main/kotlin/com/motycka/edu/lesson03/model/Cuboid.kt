@@ -1,13 +1,13 @@
 package com.motycka.edu.lesson03.model
 
 class Cuboid(
-    private val width: Double,
-    private val length: Double,
-    private val height: Double
+    val width: Double,
+    val height: Double,
+    val depth: Double
 ) : Shape3D {
 
-    override fun volume(): Double = width * length * height
+    override fun volume(): Double = width * height * depth
 
     override fun surfaceArea(): Double =
-        2 * (width * length + width * height + length * height)
+        2 * (width * height + width * depth + height * depth)
 }
